@@ -1,0 +1,8 @@
+use "std.min"
+
+clear()
+
+while 1:
+  int x = (rnd() + 128 << 1) + (rnd() and 0x01)
+  int y = rnd() + 128
+  if (x < 400 and y < 240): dot(x, y)
