@@ -12,6 +12,8 @@ Reference manual: https://docs.google.com/document/d/1-nDv_8WEG1FrlO3kEK0icoYo-Z
 
 Visit my YouTube channel: https://www.youtube.com/channel/UCXYQcMpUBT3aaQKfmAVJNow
 
+Hans Jacob's Games: https://github.com/hans61/Minimal64
+
 Like this project and want to give something back? https://www.paypal.me/carstenherting
 
 FEATURES
