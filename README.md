@@ -7,7 +7,7 @@ Here is my latest take on 80's home computer magic: The most computer from the l
 
 ![Minimal_64x4](https://github.com/slu4coder/Minimal-64x4-Home-Computer/assets/52576999/b4a158cd-91f6-47b0-8721-4080f0f73ec4)
 
-Introductory videos: ...
+Introductory video: ...
 
 Reference manual: https://docs.google.com/document/d/1-nDv_8WEG1FrlO3kEK0icoYo-Z-jlhpCMiCstxGOCjQ/edit?usp=sharing
 
