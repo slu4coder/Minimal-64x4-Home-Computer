@@ -3,11 +3,12 @@
 See "CHANGE LOG" for a brief summary of the relevant updates.
 
 
-Here is my latest take on 80's home computer magic: The most computer from the least logic or the shortest way from TTL to Space Invaders.
+Here is my latest (and most probably final) take on 80's home computer magic:
+The most computer from the least logic or the shortest way from TTL to Space Invaders.
 
 ![Minimal_64x4](https://github.com/slu4coder/Minimal-64x4-Home-Computer/assets/52576999/b4a158cd-91f6-47b0-8721-4080f0f73ec4)
 
-Introductory video: ...
+Introductory video: tbd
 
 Reference manual: https://docs.google.com/document/d/1-nDv_8WEG1FrlO3kEK0icoYo-Z-jlhpCMiCstxGOCjQ/edit?usp=sharing
 
