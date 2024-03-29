@@ -16,8 +16,6 @@ Visit my YouTube channel: https://www.youtube.com/channel/UCXYQcMpUBT3aaQKfmAVJN
 
 Hans Jacob's games: https://github.com/hans61/Minimal64
 
-Like this project and want to give something back? https://www.paypal.me/carstenherting
-
 FEATURES
 
 ● Only 61 74HCxx logic ICs, 2x 6C1008 SRAM, 4x 39SF0x0 FLASH, NO MICROCONTROLLER!
@@ -39,3 +37,5 @@ FEATURES
 ● Cycle-exact emulator, cross-assembler (Windows) and classic games (TETRIS clone, Space Invaders clone)
   
 Have fun!
+
+Do you like this project and want to give something back? https://www.paypal.me/carstenherting
