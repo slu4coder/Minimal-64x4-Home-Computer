@@ -1,4 +1,4 @@
-# The 'Minimal 64x4 Home Computer'
+# Minimal 64x4 Home Computer
 
 See "CHANGE LOG" for a brief summary of the relevant updates.
 
