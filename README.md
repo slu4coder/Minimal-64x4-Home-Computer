@@ -28,7 +28,7 @@ FEATURES
 
 ● Monochrome VGA output 400 x 240 pixels, PS/2, expansion slot and serial UART port
 
-● 8MHz CPU clockrate, 1.85Mips (4x Commodore 64)
+● 8MHz CPU clockrate, 1.85Mips - that's 4x the processing power of a Commodore C64
 
 ● 256 instructions including conditional branching, subroutines, stack, word, long and zero-page operations
 
