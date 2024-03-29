@@ -2,20 +2,19 @@
 
 See "CHANGE LOG" for a brief summary of the relevant updates.
 
-
 Here is my latest (and most probably final) take on 80's home computer magic:
 
 The most computer from the least logic or the shortest way from TTL to Space Invaders.
 
 ![Minimal_64x4](https://github.com/slu4coder/Minimal-64x4-Home-Computer/assets/52576999/b4a158cd-91f6-47b0-8721-4080f0f73ec4)
 
-Introductory video: tbd
+Introductory video: https://www.youtube.com/watch?v=L1oECH6rPvs
 
 Reference manual: https://docs.google.com/document/d/1-nDv_8WEG1FrlO3kEK0icoYo-Z-jlhpCMiCstxGOCjQ/edit?usp=sharing
 
 Visit my YouTube channel: https://www.youtube.com/channel/UCXYQcMpUBT3aaQKfmAVJNow
 
-Hans Jacob's Games: https://github.com/hans61/Minimal64
+Hans Jacob's games: https://github.com/hans61/Minimal64
 
 Like this project and want to give something back? https://www.paypal.me/carstenherting
 
