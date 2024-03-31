@@ -1,10 +1,12 @@
 # NEW: Minimal 64x4 Home Computer
 
-See "CHANGE LOG" for a brief summary of the relevant updates.
-
 Here is my latest (and most probably final) take on 80's home computer magic:
 
 The most computer from the least logic or the shortest way from TTL to Space Invaders.
+
+Quick note: This is a free and non-commercial project. I am in no way associated with any activies selling this as a product.
+Any such activity represents a license violation. Individual licenses apply for hardware and software parts. Please refer to
+appropriate documentations for detailed licensing information.
 
 ![Minimal_64x4](https://github.com/slu4coder/Minimal-64x4-Home-Computer/assets/52576999/b4a158cd-91f6-47b0-8721-4080f0f73ec4)
 
@@ -37,5 +39,7 @@ FEATURES
 ● Cycle-exact emulator, cross-assembler (Windows) and classic games (TETRIS clone, Space Invaders clone)
   
 Have fun!
+
+See "CHANGE LOG" for a brief summary of the relevant updates.
 
 Do you like this project and want to give something back? https://www.paypal.me/carstenherting
