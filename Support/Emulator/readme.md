@@ -1,4 +1,4 @@
-# Cycle-exact Minimal 64x4 Emulator (written in C++, Win64 .exe)
+# Cycle-exact Minimal 64x4 Emulator (C++/OpenGL, Win64 .exe)
 
 PLEASE NOTE: A FLASH image file 'flash.bin' (see section 'Revision .../FLASH Images') needs to reside in the same directory as the emulator .exe
 (for German keyboard layout, rename the provided 'flash_de.bin' to 'flash.bin').
