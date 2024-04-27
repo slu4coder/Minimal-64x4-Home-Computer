@@ -1,4 +1,4 @@
-# NEW: Minimal 64x4 Home Computer
+Minimal 64x4 Home Computer
 
 Here is my latest (and most probably final) take on 80's home computer magic:
 
