@@ -2,4 +2,4 @@
 
 o Cross-platform assembler
 
-o Emulator
+o Emulator (requires SSD image file 'flash.bin')
