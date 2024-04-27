@@ -4,7 +4,7 @@ Here is my latest (and most probably final) take on 80's home computer magic:
 
 The most computer from the least logic or the shortest way from TTL to Space Invaders.
 
-Quick note: This is a free and non-commercial project. I am in no way associated with any activies selling this as a product.
+This is a free and non-commercial project. I am in no way associated with any activies selling the Minimal 64x4 as a product.
 Any such activity represents a license violation. Individual licenses apply for hardware and software parts. Please refer to the
 applicable documentations for detailed licensing information.
 
