@@ -1,6 +1,6 @@
 # Minimal 64x4 Home Computer
 
-Here is my latest (and most probably final) take on 80's home computer magic:
+Here is my latest (and most probably final) take on 1980's home computer magic:
 
 The most computer from the least logic or the shortest way from TTL to Space Invaders.
 
