@@ -1,4 +1,4 @@
-Minimal 64x4 Home Computer
+# Minimal 64x4 Home Computer
 
 Here is my latest (and most probably final) take on 80's home computer magic:
 
@@ -12,7 +12,7 @@ applicable documentations for detailed licensing information.
 
 Introductory video: https://www.youtube.com/watch?v=L1oECH6rPvs
 
-Online emulator (JavaScript): https://editor.p5js.org/slu4coder/sketches/lRq1gyYR2
+Online emulator: https://editor.p5js.org/slu4coder/sketches/lRq1gyYR2
 
 Reference manual: https://docs.google.com/document/d/1-nDv_8WEG1FrlO3kEK0icoYo-Z-jlhpCMiCstxGOCjQ/edit?usp=sharing
 
