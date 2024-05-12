@@ -2,3 +2,4 @@ CHANGE LOG
 
 2024-03-29 Initial release.
 2024-04-27 INQ/DEQ/INL/DEL microcode bugfix.
+2024-05-12 asm.exe: Fixed a bug in the parsing of upper-case hex numbers.
