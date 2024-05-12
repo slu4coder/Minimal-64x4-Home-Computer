@@ -191,7 +191,7 @@ bool parseExpr(const std::string& src, const int ep, const int elen, std::string
     }
     else if (src[x] == '0' && src[x+1] == 'x') // hex number
     {
-      size_t k = src.find_first_not_of("0123456789abcdef", x+2);
+      size_t k = src.find_first_not_of("0123456789abcdefABCDEF", x+2);
       if (k == std::string::npos) k = ep + elen;
       if (k == x+2) { errors << "ERROR in line " << ln(src, ep) << ": Invalid HEX value.\n"; return false; }
       else
@@ -268,7 +268,7 @@ void Assembler(const std::string& src, std::stringstream& hexout, std::stringstr
         bool isOrg = false; ep += elen; elen = findelem(src, ep); // consume '#org' element and look for next element '0x....'
         if (elen > 2 && elen <=6 && src[ep] == '0' && src[ep+1] == 'x') // any hex word 0x.
         {
-          size_t k = src.find_first_not_of("0123456789abcdef", ep+2);
+          size_t k = src.find_first_not_of("0123456789abcdefABCDEF", ep+2);
           if (k == std::string::npos) k = ep + elen;
           if (k == ep + elen) { pc = std::stoi(src.substr(ep+2, k - (ep+2)), nullptr, 16); isOrg = true; }
         }
@@ -375,7 +375,7 @@ void Assembler(const std::string& src, std::stringstream& hexout, std::stringstr
       else if (elen == 4 && src.substr(ep+1, 3) == "org")
       {
         ep += elen; elen = findelem(src, ep); // this #org 0x. is already known to be parsable from pass 1
-        size_t k = src.find_first_not_of("0123456789abcdef", ep+2);
+        size_t k = src.find_first_not_of("0123456789abcdefABCDEF", ep+2);
         if (k == std::string::npos) k = ep + elen;
         pc = std::stoi(src.substr(ep+2, k - (ep+2)), nullptr, 16); // always set pc...
         if (isemit) hex.SetAddress(pc); // ... but set mc only while emitting
