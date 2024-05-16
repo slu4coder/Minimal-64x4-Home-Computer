@@ -2,7 +2,7 @@
 ; *****                                                        *****
 ; *****       MinOS 2 for the Minimal 64x4 Home Computer       *****
 ; *****                                                        *****
-; ***** written by Carsten Herting - last update Feb 15th 2024 *****
+; ***** written by Carsten Herting - last update May 16th 2024 *****
 ; *****                                                        *****
 ; ******************************************************************
 
@@ -11,6 +11,7 @@
 ; 09.02.2024: Cosmetic updates, changing quotation from ' to ".
 ; 10.02.2024: Rewriting 'mon' with cleaner code, now makes use of _ReadHex.
 ; 15.02.2024: Adding _ClearPixel function, renaming _Pixel to _SetPixel.
+; 16.05.2024: Added support for 'autoexec.bat'.
 
 ; HOW TO USE THIS CODE
 ; This is the sourcecode of the operating system MinOS 2 of the MINIMAL 64x4. A HEX file of the OS
@@ -84,9 +85,27 @@ OS_Image_Start:                                               ; OS image follows
 
 OS_Start:       0xff                                          ; switch off FLASH after boot-up ("BNK 0xff")
                 MIB 0xfe,0xffff                               ; init stack pointer
-                JPS OS_SerialPrint                            ; send "READY." via UART
-                27, "[H", 27, "[J", 27, "[?25hREADY.", 10, 0  ; ANSI CSI: home, clear, show cursor
                 JPS OS_ClearVRAM                              ; clear VRAM including blanking intervals
+
+                INK CPI 0x76 BEQ OS_Splash                    ; bail out of startup with ESC at reset time
+                  MIV OS_Startup,_ReadPtr
+                  JPS OS_LoadFile CPI 0 BEQ OS_Splash         ; load the program (or OS command)
+                    MVV PtrD,PtrF                             ; save batch file pointer in PtrF
+  nextstartup:      MVV PtrF,_ReadPtr                         ; goto the start of the startup text file
+  nextstartchar:    JPS _SkipSpace LDT _ReadPtr               ; skip over chars 32..39
+                    CPI 10 BNE starttest0                     ; skip over ENTER as well
+                      INV _ReadPtr JPA nextstartchar
+  starttest0:       CPI 0 BEQ OS_Splash
+                    JPS OS_LoadFile CPI 0 BEQ OS_Splash       ; valid batch entry = filename
+                        MVV _ReadPtr,PtrF                     ; update batch file pointer
+                        MZB PtrD+0,startupjps+0
+                        MZB PtrD+1,startupjps+1
+                        JPS
+  startupjps:           0xcccc
+                        JPA nextstartup
+
+  OS_Splash:    JPS OS_SerialPrint                            ; send "READY." via UART
+                27, "[H", 27, "[J", 27, "[?25hREADY.", 10, 0  ; ANSI CSI: home, clear, show cursor
                 JPS OS_Logo                                   ; draw "Minimal" logo
                 MIZ 1,_YPos                                   ; display splash screen text
                 MIZ 14,_XPos JPS OS_Print "**** MINIMAL 64x4 - MinOS 2 ****", 10, 10, 0
@@ -102,28 +121,6 @@ OS_Start:       0xff                                          ; switch off FLASH
                     JPR PtrD                                  ; run program (_ReadPtr may be used for further parsing)
     notfound:     JPS OS_Print "NOT FOUND.", 10, 0
                   JPA OS_Prompt
-
-; ------------------------------------------------------------------------------------------------------
-; Generates a pseudo-random byte in A (highly optimized)
-; Algorithm described by EternityForest (2011)
-; https://www.electro-tech-online.com/threads/ultra-fast-pseudorandom-number-generator-for-8-bit.124249/
-; ------------------------------------------------------------------------------------------------------
-OS_Random:      INZ _RandomState+0                            ; x,A = x++
-                XRZ _RandomState+3                            ; A = x^c
-                XR.Z _RandomState+1                           ; a,A = x^a^c order of XOR doesn't matter
-                AD.Z _RandomState+2                           ; b,A = b + a
-                LR1                                           ; A = b>>1
-                ADZ _RandomState+3                            ; A = (b>>1)+c
-                XRZ _RandomState+1                            ; A = (c+(b>>1))^a
-                STZ _RandomState+3                            ; c = (c+(b>>1))^a
-                RTS                                           ; return c in A
-
-; --------------------------------------------------------------------------------------------
-; Resets the state of keys ALT, SHIFT, CTRL to avoid lock-up after a longer operation (CTRL+V)
-; that did not allow for polling the PS/2 register properly.
-; --------------------------------------------------------------------------------------------
-OS_ResetPS2:      MIB 0xff,ps2_shift STB ps2_ctrl STB ps2_alt
-                  RTS
 
 ; --------------------------------------------------
 ; Moves N bytes from S.. to D.. taking overlap into account.
@@ -174,14 +171,6 @@ OS_ReadLine:  LDZ _ReadPtr+0 PHS LDZ _ReadPtr+1 PHS           ; save desired sta
               PLS STZ _ReadPtr+1 PLS STZ _ReadPtr+0           ; move to start of input
               LDI 10 JAS OS_PrintChar RTS                     ; perform ENTER and return
   clrcursor:  LDI " " JAS OS_Char RTS                         ; print SPACE and return
-
-; ---------------------------------------------------------------------------
-; Skips whitespace in user input by advancing _ReadPtr over characters 32..39
-; ---------------------------------------------------------------------------
-OS_SkipSpace: CIT 32,_ReadPtr BCC ps_useit
-                CIT 39,_ReadPtr BGT ps_useit
-                  INZ _ReadPtr+0 JPA OS_SkipSpace
-  ps_useit:   RTS
 
 ; --------------------------------------------------------------------
 ; Sends a null-terminated string trailing the function call via UART
@@ -703,6 +692,14 @@ OS_PrintHex:    STB th_store+1 RL5 ANI 15 ADI "0"             ; extract MSB
   th_lsn:       JAS OS_PrintChar
                 RTS
 
+; ---------------------------------------------------------------------------
+; Skips whitespace in user input by advancing _ReadPtr over characters 32..39
+; ---------------------------------------------------------------------------
+OS_SkipSpace: CIT 32,_ReadPtr BCC ps_useit
+                CIT 39,_ReadPtr BGT ps_useit
+                  INZ _ReadPtr+0 JPA OS_SkipSpace
+  ps_useit:   RTS
+
 ; *******************************************************************************
 ; Prints a single character in A at position (_XPos, _YPos)
 ; updates _XPos and _YPos and handles LF including scrolling
@@ -755,6 +752,30 @@ OS_PrintPtr:    LDS 3 STZ Z4 LDS 4 STZ Z3 FPA vpp_entry       ; copy text pointe
   vpp_loop:       JAS OS_PrintChar INV Z3
   vpp_entry:      CIT 0,Z3 FNE vpp_loop                       ; load next char and test for end
                     RTS
+
+; --------------------------------------------------------------------------------------------
+; Resets the state of keys ALT, SHIFT, CTRL to avoid lock-up after a longer operation (CTRL+V)
+; that did not allow for polling the PS/2 register properly.
+; --------------------------------------------------------------------------------------------
+OS_ResetPS2:      MIB 0xff,ps2_shift STB ps2_ctrl STB ps2_alt
+                  RTS
+
+; ------------------------------------------------------------------------------------------------------
+; Generates a pseudo-random byte in A (highly optimized)
+; Algorithm described by EternityForest (2011)
+; https://www.electro-tech-online.com/threads/ultra-fast-pseudorandom-number-generator-for-8-bit.124249/
+; ------------------------------------------------------------------------------------------------------
+OS_Random:      INZ _RandomState+0                            ; x,A = x++
+                XRZ _RandomState+3                            ; A = x^c
+                XR.Z _RandomState+1                           ; a,A = x^a^c order of XOR doesn't matter
+                AD.Z _RandomState+2                           ; b,A = b + a
+                LR1                                           ; A = b>>1
+                ADZ _RandomState+3                            ; A = (b>>1)+c
+                XRZ _RandomState+1                            ; A = (c+(b>>1))^a
+                STZ _RandomState+3                            ; c = (c+(b>>1))^a
+                RTS                                           ; return c in A
+
+OS_Startup:     "autoexec.bat", 0                             ; filename of the startup batch file
 
 OS_Image_End:                                                 ; address of first byte beyond OS kernel code
 

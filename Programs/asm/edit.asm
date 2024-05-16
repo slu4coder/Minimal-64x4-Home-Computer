@@ -236,7 +236,9 @@ StateChar:  JPS Update                                        ; check if redraw 
 ; ------------------------------------------------------------
 
   pc_CtrlQ:     JPS pushline
-                JPA _Start
+                JPS _Clear
+                CLV _XPos
+                JPA _Prompt
 
 ; ------------------------------------------------------------
 
