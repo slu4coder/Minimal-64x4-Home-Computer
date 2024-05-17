@@ -2,7 +2,7 @@
 ; *****                                                        *****
 ; *****       MinOS 2 for the Minimal 64x4 Home Computer       *****
 ; *****                                                        *****
-; ***** written by Carsten Herting - last update May 16th 2024 *****
+; ***** written by Carsten Herting - last update May 17th 2024 *****
 ; *****                                                        *****
 ; ******************************************************************
 
@@ -11,7 +11,7 @@
 ; 09.02.2024: Cosmetic updates, changing quotation from ' to ".
 ; 10.02.2024: Rewriting 'mon' with cleaner code, now makes use of _ReadHex.
 ; 15.02.2024: Adding _ClearPixel function, renaming _Pixel to _SetPixel.
-; 16.05.2024: Added support for 'autoexec.bat'.
+; 17.05.2024: Added support for 'autostart' batch file.
 
 ; HOW TO USE THIS CODE
 ; This is the sourcecode of the operating system MinOS 2 of the MINIMAL 64x4. A HEX file of the OS
@@ -35,74 +35,66 @@
 ; License for more details. You should have received a copy of the GNU General Public License along
 ; with this program. If not, see https://www.gnu.org/licenses/.
 
-; **********************************************************************************************************
-
-#org 0x0000                                                   ; Bank 0, Address 0 = entry point after RESET
-
-OS_Bootloader:  MIW OS_Image_Start,0xfffc                     ; OS image address to 0xfffc/d
+; -------------------------------------------------------------------------------------
+; Entry point after RESET with BANK = PC = MAR = 0
+; -------------------------------------------------------------------------------------
+#org 0x0000     MIW OS_Image_Start,0xfffc                     ; OS image address to 0xfffc/d
                 MIW _Start,0xfffe                             ; OS target address to 0xfffe/f
   imcopyloop:   LDR 0xfffc STR 0xfffe                         ; copy the OS image to RAM
                 INW 0xfffc INW 0xfffe                         ; show progress of bootloader in VRAM
-                CIB <OS_Image_End,0xfffe FNE imcopyloop       ; destination address beyond OS kernel?
+                CIB <OS_Image_End,0xfffe FNE imcopyloop       ; target address beyond OS kernel?
                   CIB >OS_Image_End,0xffff FCC imcopyloop
 
-; **********************************************************************************************************
+OS_Image_Start: #mute #org 0xf000 #emit                       ; change OS target address but emit OS image here
 
-OS_Image_Start:                                               ; OS image follows on bank 0
+  _Start:       JPA OS_Start                                  ; OS JUMP TABLE
+  _Prompt:      JPA OS_Prompt
+  _MemMove:     JPA OS_MemMove
+  _Random:      JPA OS_Random
+  _ScanPS2:     JPA OS_ScanPS2
+  _ResetPS2:    JPA OS_ResetPS2
+  _ReadInput:   JPA OS_ReadInput
+  _WaitInput:   JPA OS_WaitInput
+  _ReadLine:    JPA OS_ReadLine
+  _SkipSpace:   JPA OS_SkipSpace
+  _ReadHex:     JPA OS_ReadHex
+  _SerialWait:  JPA OS_SerialWait
+  _SerialPrint: JPA OS_SerialPrint
+  _FindFile:    JPA OS_FindFile
+  _LoadFile:    JPA OS_LoadFile
+  _SaveFile:    JPA OS_SaveFile
+  _ClearVRAM:   JPA OS_ClearVRAM
+  _Clear:       JPA OS_Clear
+  _ClearRow:    JPA OS_ClearRow
+  _ScrollUp:    JPA OS_ScrollUp
+  _ScrollDn:    JPA OS_ScrollDn
+  _Char:        JPA OS_Char
+  _PrintChar:   JPA OS_PrintChar
+  _Print:       JPA OS_Print
+  _PrintPtr:    JPA OS_PrintPtr
+  _PrintHex:    JPA OS_PrintHex
+  _SetPixel:    JPA OS_SetPixel
+  _Line:        JPA OS_Line
+  _Rect:        JPA OS_Rect
+  _ClearPixel:  JPA OS_ClearPixel
 
-#mute #org 0xf000 #emit                                       ; do not emit origin address but assemble for this destination
-
-  _Start:         JPA OS_Start                                ; KERNEL JUMP TABLE
-  _Prompt:        JPA OS_Prompt
-  _MemMove:       JPA OS_MemMove
-  _Random:        JPA OS_Random
-  _ScanPS2:       JPA OS_ScanPS2
-  _ResetPS2:      JPA OS_ResetPS2
-  _ReadInput:     JPA OS_ReadInput
-  _WaitInput:     JPA OS_WaitInput
-  _ReadLine:      JPA OS_ReadLine
-  _SkipSpace:     JPA OS_SkipSpace
-  _ReadHex:       JPA OS_ReadHex
-  _SerialWait:    JPA OS_SerialWait
-  _SerialPrint:   JPA OS_SerialPrint
-  _FindFile:      JPA OS_FindFile
-  _LoadFile:      JPA OS_LoadFile
-  _SaveFile:      JPA OS_SaveFile
-  _ClearVRAM:     JPA OS_ClearVRAM
-  _Clear:         JPA OS_Clear
-  _ClearRow:      JPA OS_ClearRow
-  _ScrollUp:      JPA OS_ScrollUp
-  _ScrollDn:      JPA OS_ScrollDn
-  _Char:          JPA OS_Char
-  _PrintChar:     JPA OS_PrintChar
-  _Print:         JPA OS_Print
-  _PrintPtr:      JPA OS_PrintPtr
-  _PrintHex:      JPA OS_PrintHex
-  _SetPixel:      JPA OS_SetPixel
-  _Line:          JPA OS_Line
-  _Rect:          JPA OS_Rect
-  _ClearPixel:    JPA OS_ClearPixel
-
-OS_Start:       0xff                                          ; switch off FLASH after boot-up ("BNK 0xff")
+OS_Start:       0xff                                          ; switch OFF FLASH after boot-up
                 MIB 0xfe,0xffff                               ; init stack pointer
                 JPS OS_ClearVRAM                              ; clear VRAM including blanking intervals
 
-                INK CPI 0x76 BEQ OS_Splash                    ; bail out of startup with ESC at reset time
-                  MIV OS_Startup,_ReadPtr
-                  JPS OS_LoadFile CPI 0 BEQ OS_Splash         ; load the program (or OS command)
-                    MVV PtrD,PtrF                             ; save batch file pointer in PtrF
-  nextstartup:      MVV PtrF,_ReadPtr                         ; goto the start of the startup text file
-  nextstartchar:    JPS _SkipSpace LDT _ReadPtr               ; skip over chars 32..39
-                    CPI 10 BNE starttest0                     ; skip over ENTER as well
-                      INV _ReadPtr JPA nextstartchar
-  starttest0:       CPI 0 BEQ OS_Splash
-                    JPS OS_LoadFile CPI 0 BEQ OS_Splash       ; valid batch entry = filename
-                        MVV _ReadPtr,PtrF                     ; update batch file pointer
-                        MZB PtrD+0,startupjps+0
-                        MZB PtrD+1,startupjps+1
-                        JPS
-  startupjps:           0xcccc
-                        JPA nextstartup
+                INK CPI 0x76 FEQ OS_Splash                    ; ESC on PS/2 bails out of startup sequence
+                  MIV OS_StartFile,_ReadPtr                   ; set _ReadPtr to startup batch filename
+                  JPS OS_LoadFile CPI 0 FEQ OS_Splash         ; load startup batch file
+                    MVV PtrD,PtrF                             ; save batch file pointer
+  startupnext:      MVV PtrF,_ReadPtr                         ; go to next startup batch file entry
+  startuplook:      LDT _ReadPtr CPI 32 FGT startupload       ; filename found?
+                      CPI 0 BEQ OS_Splash                     ; end of batch file?
+                        INV _ReadPtr FPA startuplook          ; skip over chars 1..32
+  startupload:      JPS OS_LoadFile CPI 0 FEQ OS_Splash       ; try loading this filename
+                      MVV _ReadPtr,PtrF                       ; save batch file pointer
+                      LDI <startupnext-2 PHS                  ; fake return address
+                      LDI >startupnext-2 PHS
+                      JPR PtrD                                ; next "RTS" will jump back to 'startupnext'
 
   OS_Splash:    JPS OS_SerialPrint                            ; send "READY." via UART
                 27, "[H", 27, "[J", 27, "[?25hREADY.", 10, 0  ; ANSI CSI: home, clear, show cursor
@@ -121,6 +113,13 @@ OS_Start:       0xff                                          ; switch off FLASH
                     JPR PtrD                                  ; run program (_ReadPtr may be used for further parsing)
     notfound:     JPS OS_Print "NOT FOUND.", 10, 0
                   JPA OS_Prompt
+
+; --------------------------------------------------------------------------------------------
+; Resets the state of keys ALT, SHIFT, CTRL to avoid lock-up after a longer operation (CTRL+V)
+; that did not allow for polling the PS/2 register properly.
+; --------------------------------------------------------------------------------------------
+OS_ResetPS2:      MIB 0xff,ps2_shift STB ps2_ctrl STB ps2_alt
+                  RTS
 
 ; --------------------------------------------------
 ; Moves N bytes from S.. to D.. taking overlap into account.
@@ -426,6 +425,7 @@ OS_Clear:         LDI <VIEWPORT-1 STB vc_loopx+1              ; set start index
 
 ; *******************************************************************************
 ; Clears the entire video RAM including the blanking areas (0.070s)
+; Note: This can't be done from FLASH memory, since self-modifying code is used.
 ; *******************************************************************************
 OS_ClearVRAM:     LDI <VIDEORAM STB ca_loop+1                 ; init video RAM pointer
                   LDI >VIDEORAM STB ca_loop+2
@@ -753,13 +753,6 @@ OS_PrintPtr:    LDS 3 STZ Z4 LDS 4 STZ Z3 FPA vpp_entry       ; copy text pointe
   vpp_entry:      CIT 0,Z3 FNE vpp_loop                       ; load next char and test for end
                     RTS
 
-; --------------------------------------------------------------------------------------------
-; Resets the state of keys ALT, SHIFT, CTRL to avoid lock-up after a longer operation (CTRL+V)
-; that did not allow for polling the PS/2 register properly.
-; --------------------------------------------------------------------------------------------
-OS_ResetPS2:      MIB 0xff,ps2_shift STB ps2_ctrl STB ps2_alt
-                  RTS
-
 ; ------------------------------------------------------------------------------------------------------
 ; Generates a pseudo-random byte in A (highly optimized)
 ; Algorithm described by EternityForest (2011)
@@ -775,7 +768,7 @@ OS_Random:      INZ _RandomState+0                            ; x,A = x++
                 STZ _RandomState+3                            ; c = (c+(b>>1))^a
                 RTS                                           ; return c in A
 
-OS_Startup:     "autoexec.bat", 0                             ; filename of the startup batch file
+OS_StartFile:   "autostart", 0                                ; filename of the startup batch file
 
 OS_Image_End:                                                 ; address of first byte beyond OS kernel code
 
