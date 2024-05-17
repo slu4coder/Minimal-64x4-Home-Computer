@@ -1,6 +1,6 @@
 ; ---------------------------------------------------
 ; Minimal Text Editor for the 'Minimal 64x4 Computer'
-; written by Carsten Herting - last update 31.10.2023
+; written by Carsten Herting - last update 17.05.2024
 ; ---------------------------------------------------
 
 ; LICENSING INFORMATION
