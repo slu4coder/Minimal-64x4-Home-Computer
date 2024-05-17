@@ -3,3 +3,5 @@ CHANGE LOG
 2024-03-29 Initial release.
 2024-04-27 INQ/DEQ/INL/DEL microcode bugfix.
 2024-05-12 asm.exe: Fixed a bug in the parsing of upper-case hex numbers.
+2024-05-17 os.asm, edit.asm, flash.bin: Added support for 'autostart'.
+2024-05-17 Minimal64x4.exe: Added support for 'autostart' and command line options.
