@@ -117,13 +117,17 @@ int bonus = 0_40_120_270_540         # bonus points for cleared rows
 int shape = 0_0_0_0_0_0_0_0_    0_0  # current shape
 
 int minos = minos[0|70]              # allocate local memory for 70 elements
+# x1, y1, x2, y2, x3, y3, x4, y4, px, py
 minos[0]  = -1_-1_0_-1_0_0_1_0_ 0_0  # Z
-minos[10] = -1_0_0_0_0_-1_1_-1_ 0_0  # neg. Z
+minos[10] = -1_0_0_0_0_-1_1_-1_ 0_0  # S
 minos[20] = -1_0_0_0_1_0_2_0_   0_1  # I
-minos[30] = -1_0_0_0_1_0_0_-1_  0_0  # stairs
-minos[40] = -1_-1_-1_0_0_0_1_0_ 0_0  # L
-minos[50] = -1_0_0_0_1_0_1_-1_  0_0  # neg. L
-minos[60] = 0_0_1_0_0_-1_1_-1_  0_1  # square
+minos[30] = -1_0_0_0_1_0_0_-1_  0_0  # T - stairs
+minos[40] = -1_-1_-1_0_0_0_1_0_ 0_0  # J
+minos[50] = -1_0_0_0_1_0_1_-1_  0_0  # L
+minos[60] = 0_0_1_0_0_-1_1_-1_  0_1  # O - square
+
+char up= -31; char down= -30
+char left= -29; char right= -28
 
 # -------------------------
 
@@ -145,13 +149,13 @@ while state >= 0:
   elif state==2: # game is running
     if inkey!=0:
       if inkey=="\e": state=0
-      elif inkey=="a":
+      elif inkey=="a" or inkey==left:
         if testShape(px-1, py): drawShape(".", px, py); px=px-1
-      elif inkey=="d":
+      elif inkey=="d"" or inkey==right:
         if testShape(px+1, py): drawShape(".", px, py); px=px+1
-      elif inkey=="s":
+      elif inkey=="s"" or inkey==down:
         timer=0; score+=1
-      elif inkey=="w":
+      elif inkey=="w"" or inkey==up:
         drawShape(".", px, py)
         rotShape()
         if not testShape(px, py):
