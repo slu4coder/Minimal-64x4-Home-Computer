@@ -1168,8 +1168,8 @@ Mnemonics:      "NOP","OUT","INT","INK","WIN","SEC","CLC","LL0","LL1","LL2","LL3
   #emit
 
   ; --------------------------------------------------
-  ; Displays the directory of the SSD drive
-  ; usage: jump <address> <ENTER>
+  ; Starts execution at hex address <address>. Default start address is 0x0100.
+  ; usage: run [<address>] <ENTER>
   ; --------------------------------------------------
   RunStart:       JPS _SkipSpace JPS _ReadHex                 ; skip spaces and parse first address
                   CIZ 0xf0,_ReadNum+2 BEQ 0x0100              ; default ist 0x0100
@@ -1187,7 +1187,7 @@ Mnemonics:      "NOP","OUT","INT","INK","WIN","SEC","CLC","LL0","LL1","LL2","LL3
 
   ; --------------------------------------------------
   ; Clears the VGA screen and positions the cursor at the top
-  ; usage: jump <address> <ENTER>
+  ; usage: clear <ENTER>
   ; --------------------------------------------------
   ClearStart:     JPS _Clear
                   CLZ _XPos CLZ _YPos

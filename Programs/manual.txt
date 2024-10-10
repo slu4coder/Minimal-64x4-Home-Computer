@@ -47,7 +47,9 @@ comes with the following built-in commands
   the FLASH sectors 0..2.
 
 'save <x> <y> <name>'  saves memory area <x>..<y>
-  under the filename <name> onto the SSD.%
+  under the filename <name> onto the SSD.
+
+'clear'  clears the screen%
 2. MEMORY MAP
 
 0x0000..0x0fff  4KB FLASH/RAM  depending on bank:
