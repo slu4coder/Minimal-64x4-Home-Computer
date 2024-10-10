@@ -1,0 +1,7 @@
+(sym_lib_table
+  (lib (name "8-Bit CPU 32k-cache")(type "KiCad")(uri "${KIPRJMOD}/8-Bit CPU 32k-cache.kicad_sym")(options "")(descr ""))
+  (lib (name "8-Bit CPU 32k")(type "KiCad")(uri "${KIPRJMOD}/8-Bit CPU 32k.kicad_sym")(options "")(descr ""))
+  (lib (name "8-Bit-CPU-32k-rescue")(type "KiCad")(uri "${KIPRJMOD}/8-Bit CPU 32k-rescue.kicad_sym")(options "")(descr ""))
+  (lib (name "Minimal Expansion")(type "KiCad")(uri "${KIPRJMOD}/Minimal Expansion.kicad_sym")(options "")(descr ""))
+  (lib (name "74hc4078")(type "KiCad")(uri "${KIPRJMOD}/74hc4078.kicad_sym")(options "")(descr ""))
+)

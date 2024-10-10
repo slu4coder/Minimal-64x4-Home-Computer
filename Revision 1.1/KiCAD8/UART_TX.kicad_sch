@@ -1,0 +1,19 @@
+(kicad_sch (version 20211123) (generator eeschema)
+
+  (uuid 58175766-a528-4fb2-ae9f-44f2b527a568)
+
+  (paper "A4")
+
+  (title_block
+    (title "UART Transmitter")
+    (date "2022-07-21")
+    (rev "0.5")
+    (comment 2 "creativecommons.org/licenses/by-nc-sa/4.0/")
+    (comment 3 "This work is licensed under CC BY-NC-SA 4.0")
+    (comment 4 "Author: Carsten Herting (slu4)")
+  )
+
+  (lib_symbols
+  )
+
+)

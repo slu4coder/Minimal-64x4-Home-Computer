@@ -1,0 +1,4 @@
+(fp_lib_table
+  (lib (name "logo")(type "KiCad")(uri "${KIPRJMOD}/logo.pretty")(options "")(descr ""))
+  (lib (name "ArduinoPC")(type "KiCad")(uri "${KIPRJMOD}/ArduinoPC.pretty")(options "")(descr ""))
+)
