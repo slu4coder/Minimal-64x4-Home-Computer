@@ -1,4 +1,5 @@
 // Build with: g++ asm.cpp -O2 -oasm.exe -s -static
+// On macOS:   g++ asm.cpp -O2 -oasm -std=c++11
 
 // LICENSING INFORMATION
 // This file is free software: you can redistribute it and/or modify it under the terms of the
@@ -256,7 +257,6 @@ void Assembler(const std::string& src, std::stringstream& hexout, std::stringstr
     if (src[ep+elen-1] == ':') // label definition
     {
       std::string def = src.substr(ep, elen-1);
-      bool isknown = false; // is it a known label?
       for(int i=0; i<labels.size(); i++) // search existing label database
         if (def == labels[i]) { errors << "ERROR in line " << ln(src, ep) << ": Definition already exists.\n"; return; }
       labels.emplace_back(src.substr(ep, elen-1)); labelpc.emplace_back(pc); // accept as new definition
@@ -274,7 +274,7 @@ void Assembler(const std::string& src, std::stringstream& hexout, std::stringstr
         }
         if (!isOrg) { errors << "ERROR in line " << ln(src, ep) << ": Expecting a 16-bit HEX address.\n"; return; }
       }
-      else if (elen == 5 & src.substr(ep+1, 4) == "page")
+      else if (elen == 5 && src.substr(ep+1, 4) == "page")
       {
         int delta = (-(pc & 0xff)) & 0xff;
         pc += delta;
