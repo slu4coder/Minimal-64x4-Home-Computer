@@ -1,6 +1,6 @@
 ; ---------------------------------------------------
 ; Minimal Text Editor for the 'Minimal 64x4 Computer'
-; written by Carsten Herting - last update 17.05.2024
+; written by Carsten Herting - last update 08.01.2025
 ; ---------------------------------------------------
 
 ; LICENSING INFORMATION
@@ -253,10 +253,10 @@ StateChar:  JPS Update                                        ; check if redraw 
 ; ------------------------------------------------------------
                                                               ; TRANSMIT FILE
   pc_CtrlT:     LDI 10 OUT JPS _SerialWait                    ; ENTER
-                LDI <databuf PHS
-                LDI >databuf PHS                              ; print out the whole file via UART
-                JPS _SerialPrint PLS PLS
-                LDI 10 OUT JPS _SerialWait                    ; ENTER
+                MIV databuf,Z3
+    loopT:      CIT 0,Z3 BEQ endT
+                  OUT JPS _SerialWait INV Z3 JPA loopT
+    endT:       LDI 10 OUT JPS _SerialWait                    ; ENTER
                 JPA rd2mainclear
 
 ; ------------------------------------------------------------
@@ -275,7 +275,7 @@ StateChar:  JPS Update                                        ; check if redraw 
     pc_AbortS:  JPS pushline
                 CLV _XPos JPS _ClearRow
                 JPS _Print 'SAVE ', 0
-    pc_doname:  MIV namebuf,Z3 FPA pc_entry
+    pc_doname:  MIV namebuf,Z3 JPA pc_entry
     pc_loop:      JAS _PrintChar INV Z3
     pc_entry:   CIT 0,Z3 BNE pc_loop
                   JPS InvertChar                              ; put new cursor
@@ -697,18 +697,6 @@ getnext:        LDS 4 STZ pu_sptr+0
 ; ------------------------------------------------------------
 
 ; ------------------------------------------------------------
-; copies the content of a source string at 'strcpy_s' to a
-; destination at 'strcpy_d' (no overlap allowed! no safety!)
-; ------------------------------------------------------------
-strcpy:         LDB
-  strcpy_s:     0xffff                                        ; self-modifying code
-                STB
-  strcpy_d:     0xffff CPI 0 FEQ strcpyend
-                  INW strcpy_s INW strcpy_d
-                  FPA strcpy
-  strcpyend:    RTS
-
-; ------------------------------------------------------------
 ; pulls current line incuding \n into 'line buffer' and terminates with zero
 ; ------------------------------------------------------------
 pullline:       LDZ cptr+0 PHS LDZ cptr+1 PHS
@@ -723,6 +711,18 @@ pullline:       LDZ cptr+0 PHS LDZ cptr+1 PHS
   pl_return:    LDI 0 STT pu_dptr
                 CLZ changed
                 RTS
+
+; ------------------------------------------------------------
+; copies the content of a source string at 'strcpy_s' to a
+; destination at 'strcpy_d' (no overlap allowed! no safety!)
+; ------------------------------------------------------------
+strcpy:         LDB
+  strcpy_s:     0xffff                                        ; self-modifying code
+                STB
+  strcpy_d:     0xffff CPI 0 FEQ strcpyend
+                  INW strcpy_s INW strcpy_d
+                  FPA strcpy
+  strcpyend:    RTS
 
 ; returns previous line's address or returns the same address
 ; push: address LSB, MSB
