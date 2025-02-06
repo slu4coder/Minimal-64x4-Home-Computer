@@ -1168,8 +1168,8 @@ Mnemonics:      "NOP","OUT","INT","INK","WIN","SEC","CLC","LL0","LL1","LL2","LL3
   #emit
 
   ; --------------------------------------------------
-  ; Starts execution at hex address <address>. Default start address is 0x0100.
-  ; usage: run [<address>] <ENTER>
+  ; Displays the directory of the SSD drive
+  ; usage: jump <address> <ENTER>
   ; --------------------------------------------------
   RunStart:       JPS _SkipSpace JPS _ReadHex                 ; skip spaces and parse first address
                   CIZ 0xf0,_ReadNum+2 BEQ 0x0100              ; default ist 0x0100
@@ -1187,7 +1187,7 @@ Mnemonics:      "NOP","OUT","INT","INK","WIN","SEC","CLC","LL0","LL1","LL2","LL3
 
   ; --------------------------------------------------
   ; Clears the VGA screen and positions the cursor at the top
-  ; usage: clear <ENTER>
+  ; usage: jump <address> <ENTER>
   ; --------------------------------------------------
   ClearStart:     JPS _Clear
                   CLZ _XPos CLZ _YPos
@@ -1358,8 +1358,8 @@ Mnemonics:      "NOP","OUT","INT","INK","WIN","SEC","CLC","LL0","LL1","LL2","LL3
     fm_input:     CPI "y" BNE _Prompt
                     JPS _Print "Formatting sectors 3-127.", 10, 0
     format_all:     LDI 0x03                                  ; start of SSD area is bank #03
-    format_loop:    JAS OS_FLASHErase                         ; push bank address and delete
-                    INC BPL format_loop
+    format_loop:    PHS JAS OS_FLASHErase
+                    PLS INC BPL format_loop
                       JPA _Prompt
 
   FormatEnd:
