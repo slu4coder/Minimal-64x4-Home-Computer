@@ -1,0 +1,8 @@
+use "std.min"
+
+clear()
+
+while 1:
+  int x = rnd() and 0xff
+  int y = rnd() and 0x7f
+  rect(x, y, 144, 112)
