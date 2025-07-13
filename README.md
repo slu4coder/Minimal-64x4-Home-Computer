@@ -1,6 +1,6 @@
 # Minimal 64x4 Home Computer
 
-NEWS: Minimal 64x4 1.4 Redux coming soon!
+NEWS: Minimal 64x4 1.4 Redux out now!
 
 Here is my latest (and most probably final) take on 1980's home computer magic:
 
