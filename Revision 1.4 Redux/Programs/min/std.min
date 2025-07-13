@@ -1,0 +1,72 @@
+# --------------------
+# MIN Standard Library
+# written by slu4 2024
+# --------------------
+
+# returns the element size of a string
+def strlen(char s): char e; return &e-&s
+
+# returns the element size of an int array
+def intlen(int i): char e; return &e-&i >> 1
+
+# compare two strings (0: equal)
+def strcmp(char s1, char s2):
+  int l1 = &s2 - &s1
+  if l1 != &l1 - &s2: return -1
+  int i=0
+  while i < l1:
+    if s1[i] != s2[i]: return -1
+    i+=1
+  return 0
+
+# convert a number to a string
+def str(int n):
+  char v
+  if n==0: return "0"
+  if n>0: v=""
+  else: n=-n; v="-"
+  char s=s[|5]
+  int i=5
+  while n>0:
+    i-=1
+    int d=n/10
+    s[i]=48+(n-d*10)
+    n=d
+  return v_s[i|5]
+
+# sets cursor position
+def pos(char x, char y):
+  char posx @ 0x00c0 = x
+  char posy @ 0x00c1 = y
+
+# returns a signed random number byte
+def rnd():
+  call 0xf009
+  char r @ 0x00ff
+  return r
+
+# non-blocking keyboard input (0: none)
+def key():
+  call 0xf012
+  char r @ 0x00ff
+  return r
+
+# clears the screeen
+def clear(): call 0xf033
+
+def rect(int x, int y, int w, int h):
+  char d @ 0x0080
+  d[0] = x; d[1] = x>>8; d[2] = y
+  d[3] = w; d[4] = w>>8; d[5] = h
+  call 0xf051
+
+def line(int x1, int y1, int x2, int y2):
+  char d @ 0x0080
+  d[0] = x1; d[1] = x1>>8; d[2] = y1
+  d[3] = x2; d[4] = x2>>8; d[5] = y2
+  call 0xf04e
+
+def dot(int x, int y):  
+  char d @ 0x0080
+  d[0] = x; d[1] = x>>8; d[2] = y
+  call 0xf04b

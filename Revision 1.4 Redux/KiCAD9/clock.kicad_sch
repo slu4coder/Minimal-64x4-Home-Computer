@@ -1,0 +1,19 @@
+(kicad_sch (version 20211123) (generator eeschema)
+
+  (uuid 4e2cce9b-ce6a-4049-ac2c-5f74d8693f21)
+
+  (paper "A4")
+
+  (title_block
+    (title "Global Signals")
+    (date "2023-10-02")
+    (rev "0.8")
+    (comment 2 "creativecommons.org/licenses/by-nc-sa/4.0/")
+    (comment 3 "This work is licensed under CC BY-NC-SA 4.0")
+    (comment 4 "Author: Carsten Herting (slu4)")
+  )
+
+  (lib_symbols
+  )
+
+)

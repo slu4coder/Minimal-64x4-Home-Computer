@@ -1,0 +1,131 @@
+
+(rules PCB 8-Bit CPU 32k
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 800)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 85)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.5)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.7)
+    )
+  )
+  (rule
+    (width 250.0)
+    (clear 200.0)
+    (clear 125.0 (type smd_to_turn_gap))
+    (clear 50.0 (type smd-smd))
+  )
+  (padstack "Via[0-1]_800:400_um"
+    (shape
+      (circle F.Cu 800.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 800.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_800:400_um" "Via[0-1]_800:400_um" default
+  )
+  (via 
+    "Via[0-1]_800:400_um-kicad_default" "Via[0-1]_800:400_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_800:400_um-Power" "Via[0-1]_800:400_um" Power
+  )
+  (via_rule
+    default "Via[0-1]_800:400_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_800:400_um-kicad_default"
+  )
+  (via_rule
+    Power "Via[0-1]_800:400_um-Power"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    "/UART/UART_RTS" "/UART/UART_RX" "/UART/UART_TX" "/Control Logic/~{II}" /ALU/BUS7 /ALU/BUS6 /ALU/BUS5 /ALU/BUS4
+    /ALU/BUS3 /ALU/BUS2 /ALU/BUS1 /ALU/BUS0 "unconnected-(J2-Pad2)" "/Control Logic/~{AO}" "/Memory and MAR/INH" "/PS2 Receiver/PS2_DAT"
+    "unconnected-(J2-Pad6)" "/Control Logic/~{RO}" "/Control Logic/~{RI}" "/Control Logic/~{FI}" "/PS2 Receiver/PS2_CLK" "unconnected-(J1-Pin_6-Pad6)" /ALU/~{EO} /ALU/ES
+    A0 "CLK_MAR" "/Control Logic/~{AI}" "/Control Logic/~{BI}" A1 A2 A3 A4
+    A5 A6 A7 A8 A9 "unconnected-(J3-Pin_4-Pad4)" "/Control Logic/~{BO}" A10
+    A11 A12 A13 "/Control Logic/CE" A14 ~{RESET} A15 "Net-(U1-Pad8)"
+    "/Control Logic/Flag2" "/Control Logic/Flag1" "/Control Logic/Flag0" "/Control Logic/~{TO}" "/Control Logic/Step0" "/Control Logic/Inst4" "/Control Logic/Step1" "/Control Logic/Inst5"
+    "/Control Logic/Step2" "/Control Logic/Step3" "/Control Logic/Inst0" "/Control Logic/Inst1" "/Control Logic/Inst2" "/Control Logic/Inst3" "Net-(J4-Pad1)" "/Control Logic/~{IC}"
+    "unconnected-(J4-Pad4)" "unconnected-(J4-Pad11)" "unconnected-(J4-Pad12)" "Net-(J4-Pad14)" "unconnected-(J4-Pad15)" "Net-(J4-Pad13)" "unconnected-(J4-Pad9)" "Net-(R7-Pad1)"
+    "Net-(C33-Pad1)" "/Control Logic/2MHz" "/VGA/V_A5" /VGA/H32 "/VGA/V_A6" /VGA/V1 "/Control Logic/4MHz" /VGA/H16
+    "/VGA/V_A4" "/VGA/V_A7" /VGA/V2 /VGA/H8 "/VGA/V_A3" "/VGA/V_A8" /VGA/V4 /VGA/H4
+    "/VGA/V_A2" "/VGA/V_A9" /VGA/V8 /VGA/H2 "/VGA/V_A1" /ALU/EC /ALU/B4 /ALU/B5
+    /ALU/B6 /ALU/B7 /ALU/A7 /ALU/A6 /ALU/A5 /ALU/A4 "/Control Logic/Flag3" /ALU/A3
+    /ALU/A2 /ALU/A1 /ALU/A0 /ALU/B0 /ALU/B1 /ALU/B2 "/VGA/V_A10" /VGA/V16
+    "/VGA/V_A11" /VGA/V32 /VGA/H1 "/Control Logic/Inst6" "/VGA/V_A0" "/VGA/V_A12" /VGA/V64 "/Control Logic/~{CIH}"
+    "/VGA/V_A13" "/Control Logic/~{COH}" /VGA/V128 "/Control Logic/~{VREG_OE}" "/Control Logic/~{KO}" "/Control Logic/~{PS2_DR}" "/Control Logic/~{CIL}" "/Control Logic/~{COL}"
+    "/Control Logic/ME" "Net-(U1-Pad10)" "Net-(U35-Q7)" "Net-(U2-Pad3)" "/Control Logic/~{MIH}" "/Control Logic/~{MIL}" "Net-(C32-Pad1)" 16MHz
+    "Net-(U3-Pad3)" "/Control Logic/~{TI}" /ALU/~{AND} /ALU/~{OR} "/VGA/VREG_CP" "~{CLK_PLS}" "Net-(U2-Pad1)" "Net-(U10-CP)"
+    "/ALU/N_FLG" "/Control Logic/Flag4" /ALU/B3 "/Control Logic/~{IO}" "/Control Logic/8MHz" "/Control Logic/Flag5" "Net-(U9-Pad2)" "/Control Logic/~{UART_DR}"
+    "/Control Logic/~{NI}" "/ALU/C_FLG" "/ALU/ZL_FLG" "/Memory and MAR/BANK3" "Net-(U9-Pad10)" "Net-(U37-~{MRC})" "Net-(U18-~{PL})" "Net-(U17-SRCLK)"
+    "/ALU/ZH_FLG" "Net-(U33-B7)" "Net-(U33-B1)" "Net-(U33-B3)" "unconnected-(U12-~{Q7}-Pad7)" "Net-(U33-B5)" "unconnected-(U14-Q1-Pad2)" "unconnected-(U14-Q0-Pad3)"
+    "Net-(U14-CPD)" "unconnected-(U14-Q2-Pad6)" "unconnected-(U14-Q3-Pad7)" "unconnected-(U14-~{TCU}-Pad12)" "unconnected-(U15-Q2-Pad12)" "unconnected-(U15-Q1-Pad13)" "unconnected-(U15-Q0-Pad14)" "Net-(U33-B4)"
+    "unconnected-(U16-QH'-Pad9)" "unconnected-(U17-QH'-Pad9)" "Net-(U17-RCLK)" "unconnected-(U18-Q1-Pad2)" "unconnected-(U18-Q2-Pad6)" /VGA/V256 "unconnected-(U18-Q3-Pad7)" "unconnected-(U18-~{TCU}-Pad12)"
+    "unconnected-(U19-Q3-Pad11)" "unconnected-(U19-TC-Pad15)" "/Memory and MAR/in_A15" "/Memory and MAR/in_A13" "/Memory and MAR/in_A12" "/Control Logic/MZ" "/Control Logic/MC" "/Memory and MAR/in_A14"
+    "unconnected-(U24-TC-Pad15)" "unconnected-(U26-TC-Pad15)" "/Memory and MAR/in_A2" "/Memory and MAR/in_A1" "/Memory and MAR/in_A0" "/Control Logic/Inst7" "/Memory and MAR/in_A3" "Net-(U27-TC)"
+    "unconnected-(U28-TC-Pad15)" "/Memory and MAR/in_A7" "/Memory and MAR/in_A5" "/Memory and MAR/in_A4" "/Memory and MAR/in_A6" "Net-(U29-TC)" "/Memory and MAR/in_A8" "/Memory and MAR/in_A10"
+    "/Memory and MAR/in_A9" "/Memory and MAR/in_A11" "Net-(U30-TC)" "Net-(U31-~{CE})" "unconnected-(U32-TC-Pad15)" "/Memory and MAR/BANK2" "/Memory and MAR/BANK1" "/Memory and MAR/BANK0"
+    "unconnected-(U34-NC-Pad1)" "unconnected-(U37-Q6-Pad6)" "Net-(U37-~{RCO})" "unconnected-(U39-~{RCO}-Pad9)" "/Memory and MAR/BANK7" "/Memory and MAR/BANK6" "/Memory and MAR/BANK5" "/Memory and MAR/BANK4"
+    "unconnected-(U41-Q7-Pad12)" "unconnected-(U41-Q6-Pad13)" "Net-(U48-TC)" PC7 PC6 PC5 PC4 PC3
+    PC2 "Net-(U49-TC)" "Net-(U52-TC)" /VGA/B7 /VGA/B6 /VGA/B5 /VGA/B4 /VGA/B3
+    /VGA/B2 /VGA/B1 /VGA/B0 "unconnected-(U53-TC-Pad15)" "Net-(U55-B2)" "Net-(U55-B1)" "Net-(U33-B0)" "Net-(U55-B4)"
+    "Net-(U55-B3)" "Net-(U55-S2)" "Net-(U55-S1)" PC1 PC0 "Net-(U55-C4)" "Net-(U55-S4)" PC15
+    PC14 "Net-(U33-B6)" PC13 PC12 PC11 PC10 PC9 PC8
+    "Net-(U55-S3)" "Net-(U33-B2)" "Net-(U56-B6)" "Net-(U56-B5)" "Net-(U56-B4)" "Net-(U59-B2)" "Net-(U59-B1)" "Net-(U59-B4)"
+    "Net-(U59-B3)" "unconnected-(U13-Pad6)" "unconnected-(X1-NC-Pad1)" "unconnected-(U13-Pad8)" "Net-(U58-B0)" "CLK_REG" "Net-(U58-B7)" "Net-(U58-B5)"
+    "Net-(U58-B4)" "Net-(U58-B6)" "Net-(U58-B2)" "Net-(U58-B3)" "Net-(U58-B1)" "Net-(U8-Pad13)" "Net-(U8-Pad12)" "Net-(U1-Pad1)"
+    "/Control Logic/Flag6" "Net-(U11-Pad10)" "Net-(U11-Pad6)" "Net-(U11-Pad3)" "Net-(U12-CP)" "unconnected-(U5-Q7-Pad19)" "unconnected-(U19-D0-Pad3)" "unconnected-(U19-D1-Pad4)"
+    "unconnected-(U19-D3-Pad6)" "unconnected-(U19-D2-Pad5)" "unconnected-(U24-D0-Pad3)" "/VGA/~{VGA_WE}" "/Control Logic/~{VGA_TRY}" ~{WE} "Net-(U1-Pad6)" "/Control Logic/~{VGA_GET}"
+    "Net-(R26-Pad2)" "Net-(R8-Pad1)"
+    (clearance_class "kicad_default")
+    (via_rule "kicad_default")
+    (rule
+      (width 250.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class Power
+    +5V GND
+    (clearance_class Power)
+    (via_rule Power)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)
