@@ -1,5 +1,7 @@
 # Minimal 64x4 Home Computer
 
+NEWS: Minimal 64x4 1.4 Redux coming soon!
+
 Here is my latest (and most probably final) take on 1980's home computer magic:
 
 The most computer from the least logic or the shortest way from TTL to Space Invaders.
@@ -22,7 +24,7 @@ Hans Jacob's games: https://github.com/hans61/Minimal64
 
 FEATURES
 
-● Only 61 74HCxx logic ICs, 2x 6C1008 SRAM, 4x 39SF0x0 FLASH, NO MICROCONTROLLER!
+● Only 61 (Redux: 57!) 74HCxx logic ICs, 2x 6C1008 SRAM, 4x 39SF0x0 FLASH, NO MICROCONTROLLER!
 
 ● Textbook 'Von-Neumann' architecture, 8-bit data bus, 16-bit address bus, 24 control signals
 
