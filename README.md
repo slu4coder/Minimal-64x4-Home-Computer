@@ -9,11 +9,7 @@ The most computer from the least logic or the shortest way from TTL to Space Inv
 This is a free and non-commercial project. I am in no way associated with any activies selling the Minimal 64x4 as a product.
 Any such activity represents a license violation. Individual licenses apply for hardware and software parts. Please refer to the
 applicable documentations for detailed licensing information.
-
-![Minimal_64x4](https://github.com/slu4coder/Minimal-64x4-Home-Computer/assets/52576999/b4a158cd-91f6-47b0-8721-4080f0f73ec4)
-
-<img width="1920" height="1047" alt="grafik" src="https://github.com/user-attachments/assets/eca866dc-af4d-4b90-953f-2b2271a2cba2" />
-
+<img width="1024" height="558" alt="grafik" src="https://github.com/user-attachments/assets/6f2401b2-3a69-4aee-af6e-68dcd05e6189" />
 Introductory video: https://www.youtube.com/watch?v=L1oECH6rPvs
 
 Online emulator: https://editor.p5js.org/slu4coder/sketches/lRq1gyYR2
