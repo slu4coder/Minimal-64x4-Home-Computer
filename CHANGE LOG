@@ -5,3 +5,5 @@ CHANGE LOG
 2024-05-12 asm.exe: Fixed a bug in the parsing of upper-case hex numbers.
 2024-05-17 os.asm, edit.asm, flash.bin: Added support for 'autostart'.
 2024-05-17 Minimal64x4.exe: Added support for 'autostart' and command line options.
+2025-07-13 Moved folder 'Support' and 'Programs' into 'Revision 1.1'.
+2025-07-13 Added folder 'Revision 1.4 Redux'
