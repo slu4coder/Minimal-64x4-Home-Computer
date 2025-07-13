@@ -1,5 +1,5 @@
 # Supporting Tool-Chain
 
-o Cross-platform assembler
+o Cross-platform assembler (Windows)
 
-o Emulator (requires SSD image file 'flash.bin')
+o Emulator (Windows, requires SSD image file 'flash.bin')
