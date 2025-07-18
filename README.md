@@ -28,7 +28,7 @@ FEATURES
 
 ● 64KB RAM, 512KB FLASH SSD with file system (format, load, save, dir, delete)
 
-● Monochrome VGA output 400 x 240 pixels, PS/2, expansion slot and serial UART port
+● Monochrome VGA output 400 x 240 pixels, PS/2, expansion port and serial UART interface
 
 ● 8MHz CPU clockrate, 1.85Mips - that's 4x the processing power of a Commodore C64
 
