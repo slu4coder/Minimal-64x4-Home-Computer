@@ -43,6 +43,3 @@ FEATURES
 Have fun!
 
 See "CHANGE LOG" for a brief summary of the recent updates.
-
-Do you like this project and want to give something back? Thank you so much for your support!
-https://www.paypal.me/carstenherting
