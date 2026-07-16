@@ -1,4 +1,4 @@
-# Minimal 64x4 Redux Home Computer out now!
+# Minimal 64x4 Redux Home Computer
 
 Here is my latest (and most probably final) take on 1980's home computer magic:
 
