@@ -458,8 +458,6 @@ void Assembler(const std::string& src, std::stringstream& hexout, std::stringstr
 
 int main(int argc, char *argv[])
 {
-  std::cout << "Minimal Smart Assembler by C. Herting (slu4) 2024\n\n"; // output help screen
-
   bool dosym = false; // by default don't output a symbol table
   std::string symtag = ""; // by default don't use any symbol tag
   int filenamepos = 0; // extract possible -s parameter and filename
@@ -476,23 +474,6 @@ int main(int argc, char *argv[])
     {
       std::string source;
 
-/* // testsuite "test.asm", use with raw HexPrinter
-      while(std::getline(file, source, '|'))
-      {
-        std::string result; std::getline(file, result, '\n');
-        std::stringstream hexout, errors;
-        Assembler(source, hexout, errors, dosym, symtag);
-        
-        if (errors.str().size() > 0)
-        {
-          if (result == "") std::cout << "+:";
-          else std::cout << "-:" << hexout.str() << "/" << result << ":";
-        }
-        else if (hexout.str() == result) std::cout << "+:"; else std::cout << "-:" << hexout.str() << "/" << result << ":";
-        std::cout << source << std::endl;
-      }
-*/
-
       std::stringstream hexout, errors;
       std::getline(file, source, '\0');
       file.close();
@@ -504,6 +485,7 @@ int main(int argc, char *argv[])
   }
   else
   {
+	std::cout << "Minimal Smart Assembler by C. Herting (slu4) 2024\n\n";
     std::cout << "Usage: asm <sourcefile> [-s[<tag>]]\n\n";
     std::cout << "assembles a <sourcefile> to machine code and outputs\n";
     std::cout << "the result in 'Intel HEX' format to the console.\n\n";
