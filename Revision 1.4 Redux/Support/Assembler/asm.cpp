@@ -464,8 +464,6 @@ void Assembler(const std::string& src, std::stringstream& hexout, std::stringstr
 
 int main(int argc, char *argv[])
 {
-  //std::cout << "Minimal 64x4 Redux Assembler by C. Herting (slu4) 2025\n\n";		 // output help screen
-
   bool dosym = false;																 // by default don't output a symbol table
   std::string symtag = "";													 // by default don't use any symbol tag
   int filenamepos = 0;															 // extract possible -s parameter and filename
@@ -491,6 +489,7 @@ int main(int argc, char *argv[])
 	}
   else
   {
+	std::cout << "Minimal 64x4 Redux Assembler by C. Herting (slu4) 2026\n\n";
     std::cout << "Usage: asm <sourcefile> [-s[<tag>]]\n\n";
     std::cout << "assembles a <sourcefile> to machine code and outputs\n";
     std::cout << "the result in 'Intel HEX' format to the console.\n\n";
