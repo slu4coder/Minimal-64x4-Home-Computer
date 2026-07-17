@@ -16,7 +16,13 @@ Reference manual: https://docs.google.com/document/d/1-nDv_8WEG1FrlO3kEK0icoYo-Z
 
 Visit my YouTube channel: https://www.youtube.com/channel/UCXYQcMpUBT3aaQKfmAVJNow
 
-Hans Jacob's games: https://github.com/hans61/Minimal64
+Also visit these repos for games and other fascinating projects around the Minimal 64x4:
+
+https://github.com/hans61/Minimal-64x4-Games
+https://github.com/hans61/Minimal-64x4-Expansion
+https://github.com/michaelkamprath/minimal-64x4-expansion-cards
+https://github.com/michaelkamprath/extended-min
+https://github.com/hellboy73
 
 FEATURES
 
@@ -28,7 +34,7 @@ FEATURES
 
 ● Monochrome VGA output 400 x 240 pixels, PS/2, expansion port and serial UART interface
 
-● 8MHz CPU clockrate, 1.85Mips - that's 4x the processing power of a Commodore C64
+● 8MHz CPU clockrate, 1.8Mips - that's more than 4x the commonly quoted Mips value of a 6502 running at 1MHz like in a Commodore C64 or Apple II
 
 ● 256 instructions including conditional branching, subroutines, stack, word, long and zero-page operations
 
@@ -36,7 +42,7 @@ FEATURES
 
 ● Full native tool-chain: MinOS, text editor, assembler, fast Python-like interpreter 'MIN'
 
-● Cycle-exact emulator, cross-assembler (Windows) and classic games (TETRIS clone, Space Invaders clone)
+● Cycle-exact emulator, cross-assembler (both for Windows and Linux) and classic games (TETRIS clone, Space Invaders clone, 3D Maze)
   
 Have fun!
 
