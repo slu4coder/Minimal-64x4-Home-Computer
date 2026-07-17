@@ -16,13 +16,19 @@ Reference manual: https://docs.google.com/document/d/1-nDv_8WEG1FrlO3kEK0icoYo-Z
 
 Visit my YouTube channel: https://www.youtube.com/channel/UCXYQcMpUBT3aaQKfmAVJNow
 
+
 Also visit these repos for games and other fascinating projects around the Minimal 64x4:
 
 https://github.com/hans61/Minimal-64x4-Games
+
 https://github.com/hans61/Minimal-64x4-Expansion
+
 https://github.com/michaelkamprath/minimal-64x4-expansion-cards
+
 https://github.com/michaelkamprath/extended-min
+
 https://github.com/hellboy73
+
 
 FEATURES
 
