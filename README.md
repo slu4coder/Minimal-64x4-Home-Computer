@@ -17,7 +17,7 @@ Reference manual: https://docs.google.com/document/d/1-nDv_8WEG1FrlO3kEK0icoYo-Z
 Visit my YouTube channel: https://www.youtube.com/channel/UCXYQcMpUBT3aaQKfmAVJNow
 
 
-Also visit these repos for games and other fascinating projects around the Minimal 64x4:
+Take a look at these repositories for more games and fascinating projects for the Minimal 64x4:
 
 https://github.com/hans61/Minimal-64x4-Games
 
