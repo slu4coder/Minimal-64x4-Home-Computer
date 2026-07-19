@@ -49,6 +49,10 @@ FEATURES
 ● Full native tool-chain: MinOS, text editor, assembler, fast Python-like interpreter 'MIN'
 
 ● Cycle-exact emulator, cross-assembler (both for Windows and Linux) and classic games (TETRIS clone, Space Invaders clone, 3D Maze)
+
+If you like this project and want to give something back, you can do so via PayPal. Thanks!
+
+https://paypal.me/CarstenHerting
   
 Have fun!
 
