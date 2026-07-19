@@ -1,12 +1,11 @@
 # Minimal 64x4 Redux Home Computer
 
-Here is my latest (and most probably final) take on 1980's home computer magic:
-
-The most computer from the least logic or the shortest way from TTL to Space Invaders.
+Here is my latest take on 1980's home computer magic: The most computer from the least logic or the shortest way from TTL to Space Invaders.
 
 This is a free and non-commercial project. I am in no way associated with any activies selling the Minimal 64x4 as a product.
 Any such activity represents a license violation. Individual licenses apply for hardware and software parts. Please refer to the
 applicable documentations for detailed licensing information.
+
 <img width="1024" height="558" alt="grafik" src="https://github.com/user-attachments/assets/6f2401b2-3a69-4aee-af6e-68dcd05e6189" />
 Introductory video: https://www.youtube.com/watch?v=L1oECH6rPvs
 
