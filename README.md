@@ -9,7 +9,7 @@ applicable documentations for detailed licensing information.
 <img width="1024" height="558" alt="grafik" src="https://github.com/user-attachments/assets/6f2401b2-3a69-4aee-af6e-68dcd05e6189" />
 Introductory video: https://www.youtube.com/watch?v=L1oECH6rPvs
 
-Online emulator: https://editor.p5js.org/slu4coder/sketches/lRq1gyYR2
+Online emulator (sorry, no Redux): https://editor.p5js.org/slu4coder/sketches/lRq1gyYR2
 
 Reference manual: https://docs.google.com/document/d/1-nDv_8WEG1FrlO3kEK0icoYo-Z-jlhpCMiCstxGOCjQ/edit?usp=sharing
 
