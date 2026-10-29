@@ -10,8 +10,8 @@
 #define WINx01x1xx RO|II|CE|ME, FF|BI|FI|IC, 0, 0, FF|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 #define WINx10x0xx RO|II|CE|ME, FF|BI|FI|IC, 0, 0, COH|AI, EO|CIH|MIH|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 #define WINx10x1xx RO|II|CE|ME, FF|BI|FI|IC, 0, 0, FF|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-#define WINx11x0xx RO|II|CE|ME, FF|BI|FI, COL|AI, EO|FI|CIL|MIL, COH|AI, EO|CIH|MIH|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-#define WINx11x1xx RO|II|CE|ME, FF|BI|FI, COL|AI, EO|FI|CIL|MIL, FF|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+#define WINx11x0xx RO|II|CE|ME, FF|BI, COL|AI, EO|FI|CIL|MIL, COH|AI, EO|CIH|MIH|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+#define WINx11x1xx RO|II|CE|ME, FF|BI, COL|AI, EO|FI|CIL|MIL, FF|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 #define LL0 RO|II|CE|ME, FF|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 #define LL1 RO|II|CE|ME, AO|BI, EO|FI|AI|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 #define LL2 RO|II|CE|ME, AO|BI, EO|AI|BI, EO|FI|AI|IC, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
